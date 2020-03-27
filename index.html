@@ -13,15 +13,14 @@
 	<meta property="og:type" content="article">
 	<meta property="og:title" content="Δημιουργία SMS δήλωσης μετακίνησης">
 	<meta property="og:description" content="Ένα Progressive Web App, για την εύκολη δημιουργία & αποστολή δηλώσεων μετακίνησης μέσω SMS!">
-	<meta property="og:image" content="https://www.bithub.gr/apps/13033/icon-600x600.png">
+	<meta property="og:image" content="https://www.bithub.gr/apps/13033/images/icon-600x600.png">
 	<meta property="og:image:width" content="600">
 	<meta property="og:image:height" content="600">
-	<link rel="icon" sizes="256x256" href="icon-256x256.png">
-	<link rel="icon" sizes="128x128" href="icon-128x128.png">
-	<link rel="apple-touch-icon" href="icon-144x144.png">
-	<link rel="apple-touch-icon-precomposed" href="icon-144x144.png">
+	<link rel="icon" sizes="128x128" href="images/icon-128x128.png">
+	<link rel="apple-touch-icon" href="images/icon-144x144.png">
+	<link rel="apple-touch-icon-precomposed" href="images/icon-144x144.png">
 	<link rel="manifest" href="manifest.json">
-	<link href="https://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" rel="stylesheet" type="text/css">
+	<link href="jquery.mobile-1.4.0.min.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
 	@media only screen and (min-width: 400px){
 		.ui-content:not(.ui-body-c){
@@ -32,8 +31,8 @@
 		input{font-weight: bolder;}
 	}
 	</style>
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="https://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+	<script src="jquery-1.10.2.min.js"></script>
+	<script src="jquery.mobile-1.4.0.min.js"></script>
 	<title>13033 SMS</title>
 </head>
 
@@ -62,7 +61,7 @@
 				<input value="6" name="moveRadio" id="move6" type="radio">
 				<label for="move6">6. Σωματική άσκηση σε εξωτερικό χώρο ή κίνηση με κατοικίδιο ζώο</label>
 			</fieldset>
-			<textarea cols="40" rows="8" name="sms" id="sms" placeholder="Συμπληρώστε ονοματεπώνυμό, διεύθυνση οικίας και επιλέξτε σκοπό" readonly="readonly"></textarea>
+			<textarea cols="40" rows="8" name="sms" id="sms" placeholder="Συμπληρώστε ονοματεπώνυμο, διεύθυνση οικίας και επιλέξτε σκοπό" readonly="readonly"></textarea>
 			<a id="send" data-role="button" class="ui-btn ui-disabled">Αποστολή SMS στο 13033</a>
 		</div>
 	</div>
@@ -73,15 +72,16 @@
 		</div>
 		<div role="main" class="ui-content">
 			<p>
-				<img src="icon-72x72.png" style="float: left; padding-right: 1em">
+				<img src="images/icon-72x72.png" style="float: left; padding-right: 1em">
 				Δημιουργία SMS δήλωσης μετακίνησης<br>
-				(c) Πέτρος Κυλαδίτης
+				(c) <a href="https://www.facebook.com/multipetros/" target="_blank">Πέτρος Κυλαδίτης</a><br>
+				<a href="https://github.com/multipetros/13033-PWA" target="_blank">Αποθετήριο κώδικα GitHub</a>
 			</p>
 			<p>
 				Ένα Progressive Web App, με σκοπό να βοηθήσει τους πολίτες στη δημιουργία δήλωσης μετακίνησης μέσω SMS.
 			</p>
 			<p>
-				Τα στοιχεία, ονοματεπώνυμό και διεύθυνση αποθηκεύονται τοπικά, στην προσωρινή μνήμη του browser του κινητού σας. Κανένα προσωπικό στοιχείο δε μεταφέρεται.
+				<strong>Τα στοιχεία, ονοματεπώνυμό και διεύθυνση αποθηκεύονται τοπικά, στην προσωρινή μνήμη του browser του κινητού σας. Κανένα προσωπικό στοιχείο δε μεταφέρεται στον server που φιλοξενεί την εφαρμογή.</strong>
 			</p>
 		</div>
 	</div>
@@ -128,6 +128,10 @@
 		return toMatch.some((toMatchItem) => {
 			return navigator.userAgent.match(toMatchItem);
 		});
+	}
+	
+	if('serviceWorker' in navigator){
+		navigator.serviceWorker.register('sw.js', { scope: '/apps/13033/' });
 	}
 	</script>
 </html>
