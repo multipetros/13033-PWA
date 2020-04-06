@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="el">
-
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="Progressive Web App, για την εύκολη δημιουργία & αποστολή δηλώσεων μετακίνησης μέσω SMS!">
@@ -20,19 +19,10 @@
 	<link rel="apple-touch-icon" href="images/icon-144x144.png">
 	<link rel="apple-touch-icon-precomposed" href="images/icon-144x144.png">
 	<link rel="manifest" href="manifest.json">
-	<link href="jquery.mobile-1.4.0.min.css" rel="stylesheet" type="text/css">
-	<style type="text/css">
-	@media only screen and (min-width: 400px){
-		.ui-content:not(.ui-body-c){
-			width: 400px !important;
-			margin: 0 auto !important;
-			position: relative !important;
-		}
-		input{font-weight: bolder;}
-	}
-	</style>
-	<script src="jquery-1.10.2.min.js"></script>
-	<script src="jquery.mobile-1.4.0.min.js"></script>
+	<link href="jqm.css" rel="stylesheet" type="text/css">
+	<link href="custom.css" rel="stylesheet" type="text/css">
+	<script src="jq.js"></script>
+	<script src="jqm.js"></script>
 	<title>13033 SMS</title>
 </head>
 
@@ -40,98 +30,54 @@
 
 	<div id="home" data-role="page">
 		<div data-role="header">
-			<h3>Δημιουργία SMS δήλωσης μετακίνησης</h3>
-			<a href="#about"  data-rel="dialog" data-icon="info" class="ui-btn-right" data-transition="pop" data-iconpos="notext">Πληροφορίες</a>
+			<a id="lang" data-rel="dialog" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-btn-icon-notext" data-transition="pop">l</a>
+			<h3 id="mainheader"></h3>
+			<a href="#about" data-rel="dialog" data-icon="info" class="ui-btn-right ui-btn-icon-notext" data-transition="pop" data-iconpos="notext">i</a>
 		</div>
 		<div role="main" class="ui-content">
-			<input placeholder="Το ονοματεπώνυμό σας" name="onoma" id="onoma" data-clear-btn="true">
-			<input placeholder="Η διεύθυνση της κατοικίας σας" name="addr" id="addr" data-clear-btn="true">
+			<input placeholder="" id="onoma" data-clear-btn="true">
+			<input placeholder="" id="addr" data-clear-btn="true">
 			<fieldset id="moveRadioGroup" data-role="controlgroup" data-type="vertical">
-				<legend>Σκοπός μετακίνησης:</legend>
+				<legend id="legend"></legend>
 				<input value="1" name="moveRadio" id="move1" type="radio">
-				<label for="move1">1. Μετάβαση σε φαρμακείο ή σε γιατρό</label>
+				<label for="move1" id="label1"></label>
 				<input value="2" name="moveRadio" id="move2" type="radio">
-				<label for="move2">2. Προμήθειες αγαθών πρώτης ανάγκης</label>
+				<label for="move2" id="label2"></label>
 				<input value="3" name="moveRadio" id="move3" type="radio">
-				<label for="move3">3. Μετάβαση στην τράπεζα</label>
+				<label for="move3" id="label3"></label>
 				<input value="4" name="moveRadio" id="move4" type="radio">
-				<label for="move4">4. Παροχή βοήθειας σε ανθρώπους που βρίσκονται σε ανάγκη</label>
+				<label for="move4" id="label4"></label>
 				<input value="5" name="moveRadio" id="move5" type="radio">
-				<label for="move5">5. Μετάβαση σε τελετή ή εν διαστάσει γονέων σε τέκνα</label>
+				<label for="move5" id="label5"></label>
 				<input value="6" name="moveRadio" id="move6" type="radio">
-				<label for="move6">6. Σωματική άσκηση σε εξωτερικό χώρο ή κίνηση με κατοικίδιο ζώο</label>
+				<label for="move6" id="label6"></label>
 			</fieldset>
-			<textarea cols="40" rows="8" name="sms" id="sms" placeholder="Συμπληρώστε ονοματεπώνυμο, διεύθυνση οικίας και επιλέξτε σκοπό" readonly="readonly"></textarea>
-			<a id="send" data-role="button" class="ui-btn ui-disabled">Αποστολή SMS στο 13033</a>
+			<textarea cols="40" rows="8" id="sms" placeholder="" readonly="readonly"></textarea>
+			<a id="send" data-role="button" class="ui-btn ui-disabled"></a>
 		</div>
 	</div>
 	
 	<div data-role="page" id="about">
 		<div data-role="header">
-			<h1>Πληροφορίες</h1>
+			<h1 id="aboutheader"></h1>
 		</div>
 		<div role="main" class="ui-content">
 			<p>
 				<img src="images/icon-72x72.png" style="float: left; padding-right: 1em">
-				Δημιουργία SMS δήλωσης μετακίνησης<br>
-				(c) <a href="https://www.facebook.com/multipetros/" target="_blank">Πέτρος Κυλαδίτης</a><br>
-				<a href="https://github.com/multipetros/13033-PWA" target="_blank">Αποθετήριο κώδικα GitHub</a>
+				<span id="appinfotitle"></span><br>
+				(c) <a href="https://www.facebook.com/multipetros/" target="_blank" id="copyright"></a><br>
+				<span id="lastmod"></span><br>
+				<a href="https://github.com/multipetros/13033-PWA" target="_blank" id="github"></a>
 			</p>
 			<p>
-				Ένα Progressive Web App, με σκοπό να βοηθήσει τους πολίτες στη δημιουργία δήλωσης μετακίνησης μέσω SMS.
+				<span id="description"></span> <a href="https://forma.gov.gr/#sms" target="_blank">forma.gov.gr</a>
 			</p>
 			<p>
-				<strong>Τα στοιχεία, ονοματεπώνυμό και διεύθυνση αποθηκεύονται τοπικά, στην προσωρινή μνήμη του browser του κινητού σας. Κανένα προσωπικό στοιχείο δε μεταφέρεται στον server που φιλοξενεί την εφαρμογή.</strong>
+				<strong><span id="privacy"></span></strong>
 			</p>
 		</div>
 	</div>
 	
+	<script src="app.js"></script>
 </body>
-	<script>
-	$(document).ready(function(){
-		$("#onoma").val(localStorage.getItem("onoma")) ;
-		$("#addr").val(localStorage.getItem("addr")) ;
-			
-		$("input[name='moveRadio']").click(function(){
-			var onoma = $("#onoma").val() ;
-			var addr = $("#addr").val() ;
-			if(onoma.length > 0 && addr.length  > 0){
-				$("#send").removeClass("ui-disabled") ;
-				$("#sms").val($(this).val() + " " + onoma + " " + addr);
-				var copyText = document.getElementById("sms");
-				copyText.select();
-				copyText.setSelectionRange(0, 99999);
-				document.execCommand("copy");
-				if(isMobile()){
-					$("#send").attr("href", "sms:13033?body=" + encodeURI($("#sms").val()));
-				}else{
-					$("#send").attr("href", "javascript:alert('Η αποστολή μηνύματος υποστηρίζεται μόνο από κινητά τηλέφωνα')");
-				}
-			}else{
-				$("#sms").val("") ;
-				$("#send").addClass("ui-disabled") ;
-			}
-		});
-		$(".ui-input-clear").on("click", function() {
-			$("#send").addClass("ui-disabled") ;
-			$("#sms").val("") ;
-		});
-		
-		window.addEventListener('beforeunload', function(){
-				localStorage.setItem("onoma", $("#onoma").val()) ;
-				localStorage.setItem("addr", $("#addr").val()) ;
-		});
-	});
-	
-	function isMobile() {
-		const toMatch = [/Android/i,/iPhone/i];
-		return toMatch.some((toMatchItem) => {
-			return navigator.userAgent.match(toMatchItem);
-		});
-	}
-	
-	if('serviceWorker' in navigator){
-		navigator.serviceWorker.register('sw.js', { scope: '/apps/13033/' });
-	}
-	</script>
 </html>

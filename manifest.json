@@ -7,7 +7,7 @@
   "lang": "el-GR",
   "description": "Ένα Progressive Web App, με σκοπό να βοηθήσει τους πολίτες στη δημιουργία δήλωσης μετακίνησης μέσω SMS",
   "start_url": "index.html",
-  "scope": "/",
+  "scope": "/apps/13033/",
   "icons": [
     {
       "src": "images/icon-72x72.png",

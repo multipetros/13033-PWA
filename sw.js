@@ -1,4 +1,4 @@
-const CACHEVER = '13033v1.0' ;
+const CACHEVER = '13033v1.1' ;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -13,9 +13,11 @@ self.addEventListener('install', (event) => {
       'images/icon-192x192.png',
       'images/icon-512x512.png',
       'images/ajax-loader.gif',
-      'jquery.mobile-1.4.0.min.css',
-      'jquery-1.10.2.min.js',
-      'jquery.mobile-1.4.0.min.js'
+	  'custom.css',
+      'jqm.css',
+      'jq.js',
+      'jqm.js',
+	  'app.js'
       ]);
     })
   );
