@@ -84,8 +84,8 @@ const res = {
 	},
 	lastmod:{
 		type: resType.TEXT,
-		el: "Τελευταία ενημέρωση: 06 Απρ 2020",
-		en: "Last update: Apr 06 2020"
+		el: "Τελευταία ενημέρωση: 03 Μάη 2020",
+		en: "Last update: May 03 2020"
 	},
 	description: {
 		type: resType.TEXT,
@@ -106,6 +106,11 @@ const res = {
 		type: resType.JS,
 		el: "Η αποστολή μηνύματος υποστηρίζεται μόνο από κινητά τηλέφωνα",
 		en: "Sending a message is only supported by mobile phones"
+	},
+	attention: {
+		type: resType.TEXT,
+		el: "Με βάση τις τελευταίες κυβερνητικές οδηγίες, από τις 04/05/20, για τις μετακινήσεις των πολιτών, καταργείται η υποχρέωση αποστολής SMS στο 13033.",
+		en: "Due the latest government directives, from 04/05/20, on the movement of citizens, the obligation to send SMS to 13033 is abolished."
 	}
 };
 
@@ -125,6 +130,10 @@ for(let item in res){
 }
 
 $(document).ready(function(){
+	let attentionDay = new Date(2020, 4, 4, 0, 0, 0, 0) ;
+	if(Date.now() > attentionDay.valueOf()){
+		$("#attention").show();
+	}
 	$("#onoma").val(localStorage.getItem("onoma")) ;
 	$("#addr").val(localStorage.getItem("addr")) ;
 		

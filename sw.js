@@ -1,4 +1,4 @@
-const CACHEVER = '13033v1.1' ;
+const CACHEVER = '13033v1.2' ;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
