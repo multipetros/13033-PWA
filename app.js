@@ -84,8 +84,8 @@ const res = {
 	},
 	lastmod:{
 		type: resType.TEXT,
-		el: "Τελευταία ενημέρωση: 06 Νοέμβρη 2020",
-		en: "Last update: Nov 06 2020"
+		el: "Τελευταία ενημέρωση: 11 Νοέμβρη 2020",
+		en: "Last update: Nov 11 2020"
 	},
 	description: {
 		type: resType.TEXT,
@@ -148,7 +148,8 @@ $(document).ready(function(){
 			copyText.setSelectionRange(0, 99999);
 			document.execCommand("copy");
 			if(isMobile()){
-				$("#send").attr("href", "sms:13033?body=" + encodeURI($("#sms").val()));
+				let delimiter = isApple() ? "&" : "?" ;
+				$("#send").attr("href", "sms:13033" + delimiter + "body=" + encodeURI($("#sms").val()));
 			}else{
 				$("#send").attr("href", "javascript:alert('" + res.onlymob[curLang] + "')");
 			}
@@ -167,15 +168,28 @@ $(document).ready(function(){
 		localStorage.setItem("lang", curLang) ;
 		location.reload() ;
 	});
-	
-	window.addEventListener('beforeunload', function(){
-			localStorage.setItem("onoma", $("#onoma").val()) ;
-			localStorage.setItem("addr", $("#addr").val()) ;
-	});
+	if(isApple){
+		window.addEventListener('pagehide', function(){
+				localStorage.setItem("onoma", $("#onoma").val()) ;
+				localStorage.setItem("addr", $("#addr").val()) ;
+		});
+	}else{
+		window.addEventListener('beforeunload', function(){
+				localStorage.setItem("onoma", $("#onoma").val()) ;
+				localStorage.setItem("addr", $("#addr").val()) ;
+		});
+	}
 });
 
 function isMobile() {
 	const toMatch = [/Android/i,/iPhone/i];
+	return toMatch.some((toMatchItem) => {
+		return navigator.userAgent.match(toMatchItem);
+	});
+}
+
+function isApple(){
+	const toMatch = [/iPhone/i];
 	return toMatch.some((toMatchItem) => {
 		return navigator.userAgent.match(toMatchItem);
 	});
