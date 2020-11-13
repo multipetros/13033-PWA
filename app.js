@@ -84,8 +84,8 @@ const res = {
 	},
 	lastmod:{
 		type: resType.TEXT,
-		el: "Τελευταία ενημέρωση: 11 Νοέμβρη 2020",
-		en: "Last update: Nov 11 2020"
+		el: "Τελευταία ενημέρωση: 14 Νοέμβρη 2020",
+		en: "Last update: Nov 14 2020"
 	},
 	description: {
 		type: resType.TEXT,
@@ -168,7 +168,7 @@ $(document).ready(function(){
 		localStorage.setItem("lang", curLang) ;
 		location.reload() ;
 	});
-	if(isApple){
+	if(isApple()){
 		window.addEventListener('pagehide', function(){
 				localStorage.setItem("onoma", $("#onoma").val()) ;
 				localStorage.setItem("addr", $("#addr").val()) ;
